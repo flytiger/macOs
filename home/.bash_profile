@@ -1,19 +1,13 @@
+# Source .profile if exists
 [[ -s ~/.profile ]] && source ~/.profile
-# See following for more information: http://www.infinitered.com/blog/?p=19
 
-# Path ------------------------------------------------------------
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:$PATH  # OS-X Specific, with MacPorts and MySQL installed
-#export PATH=/opt/local/bin:/opt/local/sbin:$PATH  # OS-X Specific, with MacPorts installed
-#export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
+# Load in .bashrc, .bash_exports, .bash_aliases, .bashfunctions ----------------
+for file in ~/.{bashrc,bash_exports,bash_aliases,bash_functions}; do
+    [[ -s "$file" ]] && source "$file"
+done
+unset file
 
-if [ -d $HOME/bin ]; then
-	export PATH=:$HOME/bin:$PATH  # add your bin folder to the path, if you have it.  It's a good place to add all your scripts
-fi
-
-# Load in .bashrc -------------------------------------------------
-[[ -s ~/.bashrc ]] && source ~/.bashrc
-
-# Hello Messsage --------------------------------------------------
+# Hello Messsage ---------------------------------------------------------------
 echo -e "Kernel Information: " `uname -smr`
 echo -e "${COLOR_BROWN}`bash --version`"
 echo -ne "${COLOR_GRAY}Uptime: "; uptime
@@ -35,20 +29,11 @@ echo -ne "${COLOR_GRAY}Server time is: "; date
 #     .bashrc
 
 # This loads RVM into a shell session.
-#[[ -s "/Users/joelu/.rvm/scripts/rvm" ]] && source "/Users/joelu/.rvm/scripts/rvm"
-
-
-#export PATH="/Users/joelu/Library/Application Support/GoodSync":$PATH
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/joelu/.sdkman"
-[[ -s "/Users/joelu/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/joelu/.sdkman/bin/sdkman-init.sh"
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 #initialize jevn if available
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
-# go things
-if [ -d $HOME/.go ]; then
-	export GOPATH=$HOME/.go
-	export GOROOT=/usr/local/opt/go/libexec
-	export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-fi
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+#export SDKMAN_DIR="~/.sdkman"
+#[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
