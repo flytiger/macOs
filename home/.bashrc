@@ -38,7 +38,13 @@ BLUE='\[\033[0;34m\]'
 NORMAL='\[\033[00m\]'
 COLOR_BROWN='\033[0;33m'
 COLOR_GRAY='\033[1;30m'
-PS1="${GREEN}\u${NORMAL}@${RED}\h${NORMAL} : ${BLUE}\W\$ ${NORMAL}"
+gb() {
+        echo -n ' (' && git branch 2>/dev/null | grep '^*' | colrm 1 2 | tr -d '\n' && echo  -n ') '
+}
+git_branch() {
+        gb | sed 's/ () //'
+}
+PS1="${GREEN}\u${NORMAL}@${RED}\h${NORMAL} : ${BLUE}\W${GREEN}\$(git_branch)\$ ${NORMAL}"
 
 # Paths
 #PATH=$PATH:${HOME}/bin:/usr/lib/wine/bin:/sbin:/usr/sbin
