@@ -1,7 +1,14 @@
 # Aliases
 alias ip='ipconfig getifaddr en0'
 alias ipext='curl -s http://checkip.dyndns.org/ | grep -o '[0-9][0-9]*.[0-9][0-9]*.[0-9][0-9]*.[0-9]*''
-alias ls='ls -G'
+
+if ls --color=auto &> /dev/null; then
+  #Linux
+  alias ls='ls --color=auto'
+else
+  export CLICOLOR=1
+  alias ls='ls -G'
+fi
 alias ll='ls -lA'
 alias la='ls -A'
 alias lla='ls -la'

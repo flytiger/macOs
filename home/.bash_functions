@@ -131,11 +131,25 @@ mcd () {
           git config --global alias.graph 'log --graph --oneline --decorate'
           git config --global alias.compare 'difftool --dir-diff HEAD^ HEAD'
           if which meld &>/dev/null; then
+            git config --global diff.tool meld
             git config --global diff.guitool meld
+            git config --global difftool.prompt false
             git config --global merge.tool meld
+            git config --global mergetool.prompt false
           elif which kdiff3 &>/dev/null; then
+            git config --global diff.tool kdiff3
             git config --global diff.guitool kdiff3
+            git config --global difftool.prompt false
             git config --global merge.tool kdiff3
+            git config --global mergetool.prompt false
+          elif which bcompare &>/dev/null; then
+            git config --global diff.tool bc
+            git config --global difftool.prompt false
+            git config --global difftool.bc.trustExistCode true
+            git config --global diff.guitool bc
+            git config --global merge.tool bc
+            git config --global mergetool.prompt false
+            git config --global mergetool.bc.trustExistCode true
           fi
           git config --global --list
           ;;
