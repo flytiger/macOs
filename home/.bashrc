@@ -62,7 +62,10 @@ xterm*|rxvt*)
 esac
 
 # Bash completion
-[[ -s /etc/bash_completion ]] && source /etc/bash_completion
+[[ -s /usr/local/etc/bash_completion ]] && source /usr/local/etc/bash_completion
+
+# Git completion
+[[ -s /usr/local/etc/bash_completion.d/git-completion.bash ]] && source /usr/local/etc/bash_completion.d/git-completion.bash
 
 # Locale and editor
 export EDITOR='subl -w'
