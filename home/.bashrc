@@ -1,49 +1,9 @@
 ## Joe's ~/.bashrc
 [ -z "$PS1" ] && return
 
-# Basic options
-#export HISTIGNORE="&:ls:exit:lo:ll:history"
-#export HISTCONTROL=erasedups
-# make history file bigger
-HISTFILE=$HOME/.bash_history
-HISTSIZE=10000
-HISTFILESIZE=999999
-# don't let the users enter commands that are ignored in the history file
-HISTIGNORE=""
-HISTCONTROL=""
-# ignore commands that lead with a space, ignore dups
-HISTCONTROL=ignoreboth,ignoredups
-shopt -s histappend
+# load common profile
+[[ -s $HOME/.bash_profile ]] && source $HOME/.bash_profile
 
-readonly HISTFILE
-readonly HISTSIZE
-readonly HISTFILESIZE
-readonly HISTIGNORE
-readonly HISTCONTROL
-export HISTFILE HISTSIZE HISTFILESIZE HISTIGNORE HISTCONTROL
-
-#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-#export COLORFGBG='default;default'
-
-#shopt -s checkwinsize
-#eval "$(dircolors -b /etc/dircolors)"
-
-# Prompt
-BGREEN='\[\033[1;32m\]'
-GREEN='\[\033[0;32m\]'
-BRED='\[\033[1;31m\]'
-RED='\[\033[0;31m\]'
-BBLUE='\[\033[1;34m\]'
-BLUE='\[\033[0;34m\]'
-NORMAL='\[\033[00m\]'
-COLOR_BROWN='\033[0;33m'
-COLOR_GRAY='\033[1;30m'
-gb() {
-        echo -n ' (' && git branch 2>/dev/null | grep '^*' | colrm 1 2 | tr -d '\n' && echo  -n ') '
-}
-git_branch() {
-        gb | sed 's/ () //'
-}
 PS1="${GREEN}\u${NORMAL}@${RED}\h${NORMAL} : ${BLUE}\W${GREEN}\$(git_branch)\$ ${NORMAL}"
 
 # Paths
