@@ -3,8 +3,8 @@
 #export HISTCONTROL=erasedups
 
 # make history file bigger
-HISTFILE=$HOME/.$(echo $0 | sed '/-/s/-//g')_history
-HISTSIZE=10000
+#HISTFILE=$HOME/.$(echo $0 | sed '/-/s/-//g')_history
+HISTSIZE=100000
 HISTFILESIZE=999999
 # don't let the users enter commands that are ignored in the history file
 HISTIGNORE=""
@@ -18,6 +18,8 @@ HISTCONTROL=ignoreboth,ignoredups
 #readonly HISTIGNORE
 #readonly HISTCONTROL
 export HISTFILE HISTSIZE HISTFILESIZE HISTIGNORE HISTCONTROL
+
+export EDITOR=code
 
 #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 #export COLORFGBG='default;default'

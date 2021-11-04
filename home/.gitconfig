@@ -2,6 +2,7 @@
 	name = Joe
 	email = flytiger@yahoo.com
 	username = flytiger
+	signingkey = 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
 [github]
 	user = flytiger
 [color]
@@ -287,3 +288,7 @@
 	# Delete any branches that have been merged into master
 	# See also: https://gist.github.com/robmiller/5133264
 	delete-merged-branches = "!git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+[commit]
+	gpgsign = false
+[gpg]
+	program = /usr/local/bin/gpg
